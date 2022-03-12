@@ -6,6 +6,7 @@ import { Input } from 'antd';
 
 const Demo = () => {
   const [value, setValue] = React.useState('');
+  const [value1, setValue1] = React.useState('');
   const [value2, setValue2] = React.useState('');
 
   return (
@@ -13,13 +14,20 @@ const Demo = () => {
       <h1>TiepLe</h1>
       <h4>Input type "number": Fix for iOS</h4>
       <input
+        value={value1}
+        onKeyDown={(e) => {
+          console.log('onKeyDown', e);
+        }}
+        onKeyPress={() => {
+          console.log('onKeyPress');
+        }}
         onInput={(e) => {
           console.log('input..', e, e.currentTarget.value, e.target.value);
           e.currentTarget?.preventDefault?.();
-          setValue('');
         }}
-        onKeyDown={(e) => {
-          console.log('dasdfsadf', e);
+        onKeyUp={() => {
+          console.log('keyUp');
+          setValue1('aaaa');
         }}
       />
       <Input
