@@ -22,6 +22,7 @@ const Demo = () => {
         }}
       />
       <Input
+        type="number"
         value={value}
         placeholder="Support: 0-9 e . + -"
         onInput={(e) => {
@@ -37,6 +38,24 @@ const Demo = () => {
         }}
         onChange={(e) => {
           console.log('onChange', e);
+          const v = e.target.value;
+          if ((v !== null && /^[0-9e.+-]+$/s.exec(v)) || v === '') {
+            setValue(v);
+          }
+        }}
+      />
+      <h4>Input type "number": Fix for iOS</h4>
+      <Input
+        value={value}
+        type="number"
+        placeholder="Support: 0-9 e . + -"
+        onKeyDown={(e) => {
+          const { key } = e;
+          if (!key.match(/[0-9e.+-]/)) {
+            e.preventDefault();
+          }
+        }}
+        onChange={(e) => {
           const v = e.target.value;
           if ((v !== null && /^[0-9e.+-]+$/s.exec(v)) || v === '') {
             setValue(v);
