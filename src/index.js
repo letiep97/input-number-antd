@@ -7,6 +7,7 @@ import { Input } from 'antd';
 const Demo = () => {
   const [value, setValue] = React.useState('');
   const [value1, setValue1] = React.useState('');
+  const [value2, setValue2] = React.useState('');
 
   return (
     <>
@@ -54,7 +55,7 @@ const Demo = () => {
       />
       <h4>Input type "number": Fix for iOS</h4>
       <Input
-        value={value}
+        value={value2}
         type="number"
         placeholder="Support: 0-9 e . + -"
         onKeyDown={(e) => {
@@ -66,7 +67,7 @@ const Demo = () => {
         onChange={(e) => {
           const v = e.target.value;
           if ((v !== null && /^[0-9e.+-]+$/s.exec(v)) || v === '') {
-            setValue(v);
+            setValue2(v);
           }
         }}
       />
