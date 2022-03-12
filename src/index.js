@@ -14,6 +14,7 @@ const Demo = () => {
       <h1>TiepLe</h1>
       <h4>Input type "number": Fix for iOS</h4>
       <input
+        type="number"
         value={value1}
         onKeyDown={(e) => {
           console.log('onKeyDown', e);
@@ -22,12 +23,12 @@ const Demo = () => {
           console.log('onKeyPress');
         }}
         onInput={(e) => {
-          console.log('input..', e, e.currentTarget.value, e.target.value);
+          console.log('input:', value1, e.currentTarget.value, e.target.value);
           e.currentTarget?.preventDefault?.();
         }}
         onKeyUp={() => {
           console.log('keyUp');
-          setValue1('aaaa');
+          setValue1(value1 + 'a');
         }}
       />
       <Input
@@ -38,16 +39,22 @@ const Demo = () => {
           // console.log('input..', e, e.currentTarget.value, e.target.value);
           // e.currentTarget?.preventDefault?.();
         }}
-        onKeyDown={(e) => {
-          // console.log('dasdfsadf', e);
-          // const { key } = e;
-          // if (!key.match(/[0-9e.+-]/)) {
-          //   e.preventDefault();
-          // }
+        onKeyUp={(e) => {
+          const { key } = e;
+          console.log('onKeyUp-key: ', key);
+
+          if (!key.match(/[0-9e.+-]/)) {
+            console.log('onKeyUp-key-false');
+
+            e.preventDefault();
+            setValue('___IME____');
+          }
         }}
         onChange={(e) => {
           console.log('onChange', e);
           const v = e.target.value;
+          console.log('onChange-value: ', v);
+
           if ((v !== null && /^[0-9e.+-]+$/s.exec(v)) || v === '') {
             setValue(v);
           }
