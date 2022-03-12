@@ -14,16 +14,19 @@ const Demo = () => {
       <h4>Input type "number": Fix for iOS</h4>
       <input
         value={value1}
+        onKeyDown={(e) => {
+          console.log('onKeyDown', e);
+        }}
+        onKeyPress={() => {
+          console.log('onKeyPress');
+        }}
         onInput={(e) => {
           console.log('input..', e, e.currentTarget.value, e.target.value);
           e.currentTarget?.preventDefault?.();
-          setValue1('');
         }}
         onKeyUp={() => {
           console.log('keyUp');
-        }}
-        onKeyDown={(e) => {
-          console.log('onKeyDown', e);
+          setValue1('aaaa');
         }}
       />
       <Input
